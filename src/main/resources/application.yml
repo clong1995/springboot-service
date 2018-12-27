@@ -1,0 +1,38 @@
+spring:
+  jta:
+    enabled: true
+    service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
+    max-actives: 200
+    enable-logging: false
+    atomikos:
+      datasource:
+        one:
+          unique-resource-name: oneDataSource
+          xa-data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
+          max-pool-size: 25
+          min-pool-size: 3
+          xa-properties:
+            driverClassName: com.mysql.jdbc.Driver
+            username: qd_issue
+            password: qd_issue
+            url: jdbc:mysql://localhost:3306/qd_issue?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+        two:
+          unique-resource-name: twoDataSource
+          xa-data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
+          max-pool-size: 25
+          min-pool-size: 3
+          xa-properties:
+            driverClassName: com.mysql.jdbc.Driver
+            username: di
+            password: di
+            url: jdbc:mysql://localhost:3306/di?seSSL=false
+logging:
+  level:
+    com.example: debug
+
+# JWT
+jwt:
+  tokenHeader: Authorization
+  secret: mySecret
+  authTokenStart: "Bearer "
+  expiration: 604800
