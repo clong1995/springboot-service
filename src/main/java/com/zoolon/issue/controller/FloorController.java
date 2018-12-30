@@ -1,6 +1,8 @@
 package com.zoolon.issue.controller;
 
+import com.zoolon.issue.vo.res.floor.BuildingFloorStoreVo;
 import com.zoolon.issue.result.ResultJson;
+import com.zoolon.issue.service.FloorService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -9,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/floor")
 public class FloorController {
     //@Autowired
-    //private FloorService floorService;
+    private FloorService floorService;
 
     /**
      * 获取全部楼层
@@ -34,9 +38,8 @@ public class FloorController {
             )
     })
     private ResultJson getAllBuildingFloor() {
-        //List<BuildingFloorStoreVo> buildingFloorStoreVoList = floorService.getAllBuildingFloor();
-        //return Result.success(buildingFloorStoreVoList);
-        return ResultJson.ok("floor/all");
+        List<BuildingFloorStoreVo> buildingFloorStoreVoList = floorService.getAllBuildingFloor();
+        return ResultJson.ok(buildingFloorStoreVoList);
     }
     /*
      *//**

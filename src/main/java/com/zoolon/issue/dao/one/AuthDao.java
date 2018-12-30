@@ -2,8 +2,6 @@ package com.zoolon.issue.dao.one;
 
 import com.zoolon.issue.domain.auth.Role;
 import com.zoolon.issue.domain.auth.UserDetail;
-import com.zoolon.issue.domain.auth.Role;
-import com.zoolon.issue.domain.auth.UserDetail;
 import com.zoolon.issue.po.one.RolePermissionPo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

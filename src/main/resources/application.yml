@@ -1,9 +1,6 @@
 spring:
   jta:
     enabled: true
-    service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
-    max-actives: 200
-    enable-logging: false
     atomikos:
       datasource:
         one:
@@ -12,20 +9,20 @@ spring:
           max-pool-size: 25
           min-pool-size: 3
           xa-properties:
-            driverClassName: com.mysql.jdbc.Driver
+            driverClassName: com.mysql.cj.jdbc.Driver
             username: qd_issue
             password: qd_issue
-            url: jdbc:mysql://localhost:3306/qd_issue?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+            url: jdbc:mysql://127.0.0.1:3306/qd_issue?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
         two:
           unique-resource-name: twoDataSource
           xa-data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
           max-pool-size: 25
           min-pool-size: 3
           xa-properties:
-            driverClassName: com.mysql.jdbc.Driver
+            driverClassName: com.mysql.cj.jdbc.Driver
             username: di
             password: di
-            url: jdbc:mysql://localhost:3306/di?seSSL=false
+            url: jdbc:mysql://127.0.0.1:3306/di?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
 logging:
   level:
     com.zoolon: debug

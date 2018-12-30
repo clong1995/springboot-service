@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoolon.issue.dao.one.FloorDao">
+    <select id="queryAllBuildingFloor" resultType="com.zoolon.issue.po.one.BuildingFloorPo">
+        SELECT
+            b.id AS building_id,
+            b.NAME AS building_name,
+            b.sort AS building_sort,
+            f.id AS floor_id,
+            f.NAME AS floor_name,
+            f.sort AS floor_sort
+        FROM
+            building AS b
+        LEFT JOIN
+            floor AS f ON b.id = f.building
+        ORDER BY
+            b.sort ASC,
+            f.sort ASC
+    </select>
+
+    <select id="queryFloorListByBuildingId" resultType="com.zoolon.issue.po.one.FloorPo">
+        SELECT
+          id,
+          name,
+          sort
+        FROM
+          floor
+        WHERE
+          building = #{id}
+        ORDER BY
+          sort ASC
+    </select>
+</mapper>

@@ -1,5 +1,6 @@
 package com.zoolon.issue.config;
 
+
 import com.zoolon.issue.domain.auth.UserDetail;
 import com.zoolon.issue.utils.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +21,7 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
+
     @Resource
     private JwtUtils jwtUtils;
 
@@ -29,9 +31,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${jwt.authTokenStart}")
     private String authTokenStart;
 
-
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
         //获取token
         String auth_token = request.getHeader(this.tokenHeader);
         logger.info(String.format("token : %s.", auth_token));
