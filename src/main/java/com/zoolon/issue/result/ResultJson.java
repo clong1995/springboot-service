@@ -41,13 +41,4 @@ public class ResultJson<T> implements Serializable {
         this.code = resultCode.getCode();
         this.msg = resultCode.getMsg();
     }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "\"code\":" + code +
-                ", \"msg\":\"" + msg + '\"' +
-                ", \"data\":\"" + data + '\"' +
-                '}';
-    }
 }

@@ -24,7 +24,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
         //验证为未登陆状态会进入此方法，认证错误
-        log.info("认证失败：%s", authException.getMessage());
+        log.info("认证失败：{}", authException.getMessage());
         //System.out.println("认证失败：" + authException.getMessage());
         response.setStatus(200);
         response.setCharacterEncoding("UTF-8");

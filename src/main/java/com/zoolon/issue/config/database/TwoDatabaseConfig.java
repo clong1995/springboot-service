@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 )
 public class TwoDatabaseConfig {
     @Bean(name = "twoDataSource")
-    @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.two")
+    @ConfigurationProperties(prefix = "jta.atomikos.datasource.two")
     public DataSource twoDataSource() {
         return new AtomikosDataSourceBean();
     }

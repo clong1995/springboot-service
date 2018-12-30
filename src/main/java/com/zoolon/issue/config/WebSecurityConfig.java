@@ -90,17 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         return fsi;
                     }
                 })
-
-
-                .antMatchers(
-                        "/auth/login",
-                        "/auth/sign",
-                        "/error/**"
-                ).permitAll()//认证相关
-
-
                 .and()
-
                 .authorizeRequests().anyRequest().authenticated().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()//基于token，所以不需要session
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()//匿名用户访问无权限资源时的异常
@@ -112,25 +102,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers(
-                        "swagger-ui.html",
-                        "**/swagger-ui.html",
+                        //"*.html",
+                        //"*.css",
+                        //"*.js",
+                        //"*.png",
+                        //"*.gif",
+                        //"*.ttf",
+                        //"*.ico",
+                        //"/v2/api-docs",
+
+                        //"/swagger-resources/configuration/ui",
+                        //"/swagger-resources",
+                        //"/swagger-resources/configuration/security",
+                        //"/swagger-ui.html",
+
+                        //"/druid/**",
+
+                        //"swagger-ui.html",
+                        //"**/swagger-ui.html",
+
+                        //"/swagger-resources/**",
+                        //"/v2/**"
+
                         "/favicon.ico",
-                        "/**/*.css",
-                        "/**/*.js",
-                        "/**/*.png",
-                        "/**/*.gif",
+                        "/error/**",
+
                         "/swagger-resources/**",
-                        "/v2/**",
-                        "/**/*.ttf"
-                );
-        web
-                .ignoring()
-                .antMatchers(
-                        "/v2/api-docs",
-                        "/swagger-resources/configuration/ui",
-                        "/swagger-resources",
-                        "/swagger-resources/configuration/security",
-                        "/swagger-ui.html"
+                        "/webjars/**",
+                        "/v2/api-docs/**",
+                        "/swagger-ui.html",
+
+                        "/druid/**",
+
+                        "/auth/login",
+                        "/auth/sign"
                 );
     }
 

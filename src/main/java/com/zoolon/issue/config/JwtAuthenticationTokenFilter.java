@@ -36,7 +36,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         //获取token
         String auth_token = request.getHeader(this.tokenHeader);
-        logger.info(String.format("token : %s.", auth_token));
+        //logger.info(String.format("token : %s.", auth_token));
         //非空切符合标准的token
         if (StringUtils.isNotEmpty(auth_token) && auth_token.startsWith(this.authTokenStart)) {
             //去掉头

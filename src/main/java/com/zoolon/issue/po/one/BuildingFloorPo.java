@@ -2,9 +2,11 @@ package com.zoolon.issue.po.one;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class BuildingFloorPo {
     private Integer buildingId;
     private String buildingName;

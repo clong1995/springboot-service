@@ -26,7 +26,7 @@ public class OneDatabaseConfig {
 
     @Primary
     @Bean(name = "oneDataSource")
-    @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.one")
+    @ConfigurationProperties(prefix = "jta.atomikos.datasource.one")
     public DataSource oneDataSource() {
         return new AtomikosDataSourceBean();
     }
@@ -38,6 +38,9 @@ public class OneDatabaseConfig {
         bean.setDataSource(oneDataSource);
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         bean.setMapperLocations(resolver.getResources("classpath:com/zoolon/issue/dao/one/mapper/*.xml"));
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setMapUnderscoreToCamelCase(true);
+        bean.setConfiguration(configuration);
         return bean.getObject();
     }
 

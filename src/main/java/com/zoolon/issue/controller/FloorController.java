@@ -3,9 +3,11 @@ package com.zoolon.issue.controller;
 import com.zoolon.issue.vo.res.floor.BuildingFloorStoreVo;
 import com.zoolon.issue.result.ResultJson;
 import com.zoolon.issue.service.FloorService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
+@Api(description = "楼层信息")
 @RequestMapping("/floor")
 public class FloorController {
-    //@Autowired
+    @Autowired
     private FloorService floorService;
 
     /**
@@ -37,7 +39,7 @@ public class FloorController {
                     paramType = "header"
             )
     })
-    private ResultJson getAllBuildingFloor() {
+    public ResultJson getAllBuildingFloor() {
         List<BuildingFloorStoreVo> buildingFloorStoreVoList = floorService.getAllBuildingFloor();
         return ResultJson.ok(buildingFloorStoreVoList);
     }

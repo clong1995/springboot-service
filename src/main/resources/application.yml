@@ -1,31 +1,33 @@
-spring:
-  jta:
-    enabled: true
-    atomikos:
-      datasource:
-        one:
-          unique-resource-name: oneDataSource
-          xa-data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
-          max-pool-size: 25
-          min-pool-size: 3
-          xa-properties:
-            driverClassName: com.mysql.cj.jdbc.Driver
-            username: qd_issue
-            password: qd_issue
-            url: jdbc:mysql://127.0.0.1:3306/qd_issue?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
-        two:
-          unique-resource-name: twoDataSource
-          xa-data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
-          max-pool-size: 25
-          min-pool-size: 3
-          xa-properties:
-            driverClassName: com.mysql.cj.jdbc.Driver
-            username: di
-            password: di
-            url: jdbc:mysql://127.0.0.1:3306/di?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+jta:
+  atomikos:
+    datasource:
+      one:
+        unique-resource-name: oneDataSource
+        xaDataSourceClassName: com.alibaba.druid.pool.xa.DruidXADataSource
+        max-pool-size: 25
+        min-pool-size: 3
+        xa-properties:
+          driverClassName: com.mysql.cj.jdbc.Driver #高版本
+          #driverClassName: com.mysql.jdbc.Driver #低版本
+          username: qd_issue
+          password: qd_issue
+          url: jdbc:mysql://127.0.0.1:3306/qd_issue?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+      two:
+        unique-resource-name: twoDataSource
+        xaDataSourceClassName: com.alibaba.druid.pool.xa.DruidXADataSource
+        max-pool-size: 25
+        min-pool-size: 3
+        xa-properties:
+          driverClassName: com.mysql.cj.jdbc.Driver #高版本
+          #driverClassName: com.mysql.jdbc.Driver #低版本
+          username: di
+          password: di
+          url: jdbc:mysql://127.0.0.1:3306/di?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+
 logging:
   level:
     com.zoolon: debug
+  file: /issue-logs/log.txt
 
 # JWT
 jwt:
