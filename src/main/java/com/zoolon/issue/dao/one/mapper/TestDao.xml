@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoolon.issue.dao.one.TestDao">
+    <select id="testOneTx1">
+        insert into test1 (id,name) VALUES(6,'666666')
+    </select>
+    <select id="testOneTx2">
+        insert into test2 (id,name) VALUES(3,'333333')
+    </select>
+</mapper>

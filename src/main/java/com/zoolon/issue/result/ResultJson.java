@@ -3,6 +3,7 @@ package com.zoolon.issue.result;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Data
@@ -11,6 +12,7 @@ public class ResultJson<T> implements Serializable {
     private int code;
     private String msg;
     private T data;
+    //private long ts;
 
     public static ResultJson ok() {
         return ok("");
@@ -34,6 +36,7 @@ public class ResultJson<T> implements Serializable {
 
     public ResultJson(ResultCode resultCode, T data) {
         setResultCode(resultCode);
+        //this.ts = new Date().getTime();
         this.data = data;
     }
 

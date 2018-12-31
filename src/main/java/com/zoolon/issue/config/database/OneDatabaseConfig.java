@@ -1,5 +1,7 @@
 package com.zoolon.issue.config.database;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.xa.DruidXADataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,7 +30,11 @@ public class OneDatabaseConfig {
     @Bean(name = "oneDataSource")
     @ConfigurationProperties(prefix = "jta.atomikos.datasource.one")
     public DataSource oneDataSource() {
-        return new AtomikosDataSourceBean();
+        /*DruidXADataSource druidXADataSource = new DruidXADataSource();
+        druidXADataSource.setFilters();*/
+        return new DruidXADataSource();
+        //return new DruidDataSource();
+        //return new AtomikosDataSourceBean();
     }
 
     @Primary

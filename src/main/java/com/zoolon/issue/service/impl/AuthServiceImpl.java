@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
     public UserDetail register(UserDetail userDetail) {
         final String username = userDetail.getUsername();
         if (authDao.findByUsername(username) != null) {
-            throw new CustomException(ResultJson.failure(ResultCode.BAD_REQUEST, "用户已存在"));
+            throw new CustomException(ResultCode.BAD_REQUEST, "用户已存在");
         }
         //增加用户
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -115,7 +115,7 @@ public class AuthServiceImpl implements AuthService {
             // 如果正确，则存储该用户名密码到“security 的 context中”
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException | BadCredentialsException e) {
-            throw new CustomException(ResultJson.failure(ResultCode.LOGIN_ERROR, e.getMessage()));
+            throw new CustomException(ResultCode.LOGIN_ERROR, e.getMessage());
         }
     }
 }

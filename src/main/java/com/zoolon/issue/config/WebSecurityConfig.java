@@ -135,7 +135,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/druid/**",
 
                         "/auth/login",
-                        "/auth/sign"
+                        "/auth/sign",
+                        "/test/**"
                 );
     }
 
