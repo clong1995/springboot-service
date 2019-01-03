@@ -1,13 +1,14 @@
 package com.zoolon.issue.controller;
 
-import com.zoolon.issue.domain.auth.Role;
-import com.zoolon.issue.domain.auth.UserDetail;
+import com.zoolon.issue.domain.one.auth.Role;
+import com.zoolon.issue.domain.one.auth.UserDetail;
 import com.zoolon.issue.result.ResponseUserToken;
 import com.zoolon.issue.result.ResultCode;
 import com.zoolon.issue.result.ResultJson;
 import com.zoolon.issue.service.AuthService;
 import com.zoolon.issue.vo.param.auth.LoginParam;
 import com.zoolon.issue.vo.param.auth.SignParam;
+import com.zoolon.issue.vo.res.auth.GetUserRes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author JoeTao
@@ -77,7 +80,11 @@ public class AuthController {
             return ResultJson.failure(ResultCode.UNAUTHORIZED);
         }
         UserDetail userDetail = authService.getUserByToken(token);
-        return ResultJson.ok(userDetail);
+        GetUserRes getUserRes = GetUserRes.builder()
+                .id(userDetail.getId())
+                .username(userDetail.getUsername())
+                .build();
+        return ResultJson.ok(getUserRes);
     }
 
     @PostMapping(value = "/sign")
@@ -86,12 +93,17 @@ public class AuthController {
             notes = "用户注册，不可注册admin，已被内置"
     )
     public ResultJson sign(@Valid @RequestBody SignParam signParam) {
+        /*List<Role> roleList = new ArrayList<Role>() {{
+            add(Role.builder().id(1).build());
+        }};
+
         UserDetail userDetail = new UserDetail(
                 signParam.getUsername(),
                 signParam.getPassword(),
-                Role.builder().id(1).build()
-        );
-        authService.register(userDetail);
+                //Role.builder().id(1).build()
+                roleList
+        );*/
+        authService.register(signParam);
         return ResultJson.ok();
     }
 

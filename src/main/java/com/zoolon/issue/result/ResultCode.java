@@ -19,7 +19,8 @@ public enum ResultCode {
     OPERATE_ERROR(405, "禁用请求中指定的方法"),
     TIME_OUT(408, "等候请求时发生超时"),
     SERVER_ERROR(500, "服务器内部错误"),
-    DUPLICATE_KEY(500100, "重复主键");
+    DUPLICATE_KEY(500100, "重复主键"),
+    PARAM_ERROR(500200, "参数校验异常");
 
     private int code;
     private String msg;

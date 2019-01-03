@@ -1,7 +1,7 @@
 package com.zoolon.issue.service.impl;
 
 import com.zoolon.issue.dao.one.AuthDao;
-import com.zoolon.issue.po.one.RolePermissionPo;
+import com.zoolon.issue.po.one.role.RolePermissionPo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -55,7 +55,7 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
             }
         }
         int size = stringArrayList.size();
-        log.info("当前地址需要的角色 {} ", stringArrayList.toString());
+        //log.info("当前地址需要的角色 {} ", stringArrayList.toString());
         if (size > 0) {
             String[] strings = new String[size];
             return SecurityConfig.createList(stringArrayList.toArray(strings));

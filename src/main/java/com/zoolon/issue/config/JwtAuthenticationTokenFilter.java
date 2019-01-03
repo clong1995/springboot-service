@@ -1,11 +1,12 @@
 package com.zoolon.issue.config;
 
 
-import com.zoolon.issue.domain.auth.UserDetail;
+import com.zoolon.issue.domain.one.auth.UserDetail;
 import com.zoolon.issue.utils.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -44,6 +45,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             //获取用户名
             String username = jwtUtils.getUsernameFromToken(auth_token);
             logger.info(String.format("Checking authentication for userDetail %s.", username));
+
+            //Authentication a = SecurityContextHolder.getContext().getAuthentication();
+
             if (username != null //有用户名
                     && jwtUtils.containToken(username, auth_token)//有缓存
                     && SecurityContextHolder.getContext().getAuthentication() == null) {//获取当前用户

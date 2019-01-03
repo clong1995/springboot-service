@@ -1,4 +1,4 @@
-package com.zoolon.issue.domain.auth;
+package com.zoolon.issue.domain.one.auth;
 
 import lombok.Builder;
 import lombok.Data;

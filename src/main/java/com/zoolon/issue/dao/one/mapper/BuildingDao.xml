@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoolon.issue.dao.one.BuildingDao">
+    <select id="queryAllBuilding" resultType="com.zoolon.issue.domain.one.Building">
+        SELECT
+            id,
+            name,
+            sort
+        FROM
+            building
+        ORDER BY
+            sort ASC
+    </select>
+</mapper>

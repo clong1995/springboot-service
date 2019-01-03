@@ -1,7 +1,8 @@
 package com.zoolon.issue.service;
 
-import com.zoolon.issue.domain.auth.UserDetail;
+import com.zoolon.issue.domain.one.auth.UserDetail;
 import com.zoolon.issue.result.ResponseUserToken;
+import com.zoolon.issue.vo.param.auth.SignParam;
 
 /**
  * @author: JoeTao
@@ -10,10 +11,8 @@ import com.zoolon.issue.result.ResponseUserToken;
 public interface AuthService {
     /**
      * 注册用户
-     * @param userDetail
-     * @return
      */
-    UserDetail register(UserDetail userDetail);
+    UserDetail register(SignParam signParam);
 
     /**
      * 登陆

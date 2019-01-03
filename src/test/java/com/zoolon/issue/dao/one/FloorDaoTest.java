@@ -1,6 +1,6 @@
 package com.zoolon.issue.dao.one;
 
-import com.zoolon.issue.po.one.BuildingFloorPo;
+import com.zoolon.issue.po.one.building.BuildingFloorPo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

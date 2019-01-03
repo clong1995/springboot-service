@@ -1,10 +1,8 @@
 package com.zoolon.issue.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.zoolon.issue.domain.auth.Role;
-import com.zoolon.issue.domain.auth.UserDetail;
-import com.zoolon.issue.domain.auth.Role;
-import com.zoolon.issue.domain.auth.UserDetail;
+import com.zoolon.issue.domain.one.auth.UserDetail;
+import com.zoolon.issue.domain.one.auth.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.Jwts;
@@ -51,13 +49,12 @@ public class JwtUtils {
         UserDetail userDetail;
         try {
             final Claims claims = getClaimsFromToken(token);
-            //Integer userId = getUserIdFromToken(token);
             Integer userId = getUserIdFromClaims(claims);
             String username = claims.getSubject();
-            String roleName = claims.get(CLAIM_KEY_AUTHORITIES).toString();
-
-            Role role = Role.builder().name(roleName).build();
-            userDetail = new UserDetail(userId, username, role, "");
+            ArrayList<String> arrayList = (ArrayList<String>) claims.get(CLAIM_KEY_AUTHORITIES);
+            List<Role> roleList = new ArrayList<>();
+            arrayList.forEach(roleName -> roleList.add(Role.builder().name(roleName).build()));
+            userDetail = new UserDetail(userId, username, roleList, "");
         } catch (Exception e) {
             userDetail = null;
         }
@@ -128,7 +125,9 @@ public class JwtUtils {
 
     public String generateAccessToken(UserDetail userDetail) {
         Map<String, Object> claims = generateClaims(userDetail);
-        claims.put(CLAIM_KEY_AUTHORITIES, authoritiesToArray(userDetail.getAuthorities()).get(0));
+
+        //claims.put(CLAIM_KEY_AUTHORITIES, authoritiesToArray(userDetail.getAuthorities()).get(0));
+        claims.put(CLAIM_KEY_AUTHORITIES, authoritiesToArray(userDetail.getAuthorities()));
         return generateAccessToken(userDetail.getUsername(), claims);
     }
 

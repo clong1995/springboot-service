@@ -1,0 +1,19 @@
+package com.zoolon.issue.vo.param.advert;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Digits;
+
+@Getter
+@Setter
+public class OpenParam {
+    @Digits(integer = 2, fraction = 0, message = "id 必须是小于 {integer}位的整数")
+    @Range(min = 1, max = 255, message = "id 必须在 {min} - {max} 之间")
+    private Integer id;
+
+    @Digits(integer = 2, fraction = 0, message = "open 必须是小于 {integer}位的整数")
+    @Range(min = 1, max = 255, message = "open 必须在 {min} - {max} 之间")
+    private Integer open;
+}

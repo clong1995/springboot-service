@@ -4,6 +4,7 @@ import com.zoolon.issue.result.ResultCode;
 import com.zoolon.issue.result.ResultJson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -39,4 +40,20 @@ public class DefaultExceptionHandler {
         log.error("\r\n>>>>>>> " + errCode + " <<<<<<<" + errMsg);
         return ResultJson.failure(ResultCode.DUPLICATE_KEY, errCode);
     }
+
+    /**
+     * 参数检验异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResultJson handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        e.printStackTrace();
+        String errMsg = e.getMessage();
+        String errCode = "异常代号:" + new Date().getTime();
+        log.error("\r\n>>>>>>> " + errCode + " <<<<<<<" + errMsg);
+        return ResultJson.failure(ResultCode.PARAM_ERROR, errCode);
+    }
+
 }

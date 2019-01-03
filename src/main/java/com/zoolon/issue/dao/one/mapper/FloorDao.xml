@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zoolon.issue.dao.one.FloorDao">
-    <select id="queryAllBuildingFloor" resultType="com.zoolon.issue.po.one.BuildingFloorPo">
+    <select id="queryAllBuildingFloor" resultType="com.zoolon.issue.po.one.building.BuildingFloorPo">
         SELECT
             b.id AS building_id,
             b.NAME AS building_name,
@@ -20,7 +20,7 @@
             f.sort ASC
     </select>
 
-    <select id="queryFloorListByBuildingId" resultType="com.zoolon.issue.po.one.FloorPo">
+    <select id="queryFloorListByBuildingId" resultType="com.zoolon.issue.po.one.floor.FloorPo">
         SELECT
           id,
           name,

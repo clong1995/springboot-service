@@ -49,7 +49,7 @@ public class FloorController {
      *//*
     @RequestMapping(value = "/byBuildingId", method = RequestMethod.POST)
     @ResponseBody
-    private Map<String, Object> getFloorListByBuildingId(@RequestBody @Valid BuildingVo buildingVo) {
+    private Map<String, Object> getFloorListByBuildingId(@RequestBody @Valid ByBuildingIdParam buildingVo) {
         List<Floor> floorList = floorService.getFloorListByBuildingId(buildingVo.getId());
         return Result.success(floorList);
     }*/

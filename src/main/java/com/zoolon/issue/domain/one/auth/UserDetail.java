@@ -1,4 +1,4 @@
-package com.zoolon.issue.domain.auth;
+package com.zoolon.issue.domain.one.auth;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,24 +17,24 @@ public class UserDetail implements UserDetails {
     private Integer id;
     private String username;
     private String password;
-    private Role role;
+    private List<Role> roleList;
     private Date updateTime;
 
     public UserDetail(
             Integer id,
             String username,
-            Role role,
+            List<Role> roleList,
             String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.roleList = roleList;
     }
 
-    public UserDetail(String username, String password, Role role) {
+    public UserDetail(String username, String password, List<Role> roleList) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.roleList = roleList;
     }
 
     public UserDetail(Long id, String username, String password) {
@@ -44,11 +44,25 @@ public class UserDetail implements UserDetails {
         this.password = password;
     }
 
+    public UserDetail(String username, String password, Date date) {
+        //Long => Integer
+        this.username = username;
+        this.password = password;
+        this.updateTime = date;
+    }
+
     //返回分配给用户的角色列表
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(role.getName()));
+        /*for (int i = 0; i < roleList.size(); i++) {
+            authorities.add(new SimpleGrantedAuthority(roleList.get(i).getName()));
+        }*/
+
+        roleList.forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        });
+
         return authorities;
     }
 

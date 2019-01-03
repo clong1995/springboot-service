@@ -1,5 +1,6 @@
 package com.zoolon.issue.config;
 
+import com.alibaba.fastjson.JSON;
 import com.zoolon.issue.result.ResultCode;
 import com.zoolon.issue.result.ResultJson;
 import com.zoolon.issue.result.ResultCode;
@@ -30,8 +31,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         PrintWriter printWriter = response.getWriter();
-        String body = ResultJson.failure(ResultCode.UNAUTHORIZED, authException.getMessage()).toString();
-        printWriter.write(body);
+        ResultJson body = ResultJson.failure(ResultCode.UNAUTHORIZED, authException.getMessage());
+        String textJson = JSON.toJSONString(body);
+        printWriter.write(textJson);
         printWriter.flush();
     }
 }

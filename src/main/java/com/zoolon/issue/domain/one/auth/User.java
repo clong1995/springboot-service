@@ -1,6 +1,5 @@
-package com.zoolon.issue.domain.auth;
+package com.zoolon.issue.domain.one.auth;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 

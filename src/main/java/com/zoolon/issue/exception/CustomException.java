@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 public class CustomException extends RuntimeException {
     private ResultJson resultJson;
+
     public CustomException(ResultCode code, Object o) {
         this.resultJson = ResultJson.failure(code, o);
     }

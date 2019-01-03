@@ -1,16 +1,13 @@
-package com.zoolon.issue.po.one;
+package com.zoolon.issue.domain.one;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.Digits;
 
 @Getter
 @Setter
 @ToString
-public class FloorPo {
+public class Building {
     private Integer id;
     private String name;
     private Integer sort;

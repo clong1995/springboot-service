@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoolon.issue.dao.one.AdvertDao">
+    <insert id="insertAdvert" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="com.zoolon.issue.vo.param.advert.AddParam">
+        INSERT INTO
+          advert
+          (name,position,building,floor,width,height,ip,devType,devName,remark,mac)
+        VALUES
+          (#{name},#{position},#{building},#{floor},#{width},#{height},#{ip},#{devType},#{devName},#{remark},#{mac})
+    </insert>
+
+    <insert id="insertAdvertRelation" useGeneratedKeys="true"
+            parameterType="com.zoolon.issue.vo.param.advert.RelationParam">
+        INSERT INTO
+          advert_relation
+          (advert,ad,danger)
+        VALUES
+          (#{advert},#{ad},#{danger})
+    </insert>
+
+
+    <select id="queryAdvertRelation"
+            parameterType="com.zoolon.issue.vo.param.advert.ByIdParam"
+            resultType="com.zoolon.issue.domain.one.AdvertRelation">
+        SELECT
+          advert,
+          ad,
+          danger
+        FROM
+          advert_relation
+        WHERE
+          advert = #{id}
+    </select>
+
+    <update id="updateAdvertRelation" parameterType="com.zoolon.issue.vo.param.advert.RelationParam">
+        update
+          advert_relation
+        SET
+          danger=#{danger},
+          ad=#{ad}
+        where
+          advert=#{advert}
+    </update>
+
+
+    <select id="queryAdvertListByBuildingId" resultType="com.zoolon.issue.po.one.advert.AdvertPo"
+            parameterType="com.zoolon.issue.vo.param.advert.ByBuildingIdParam">
+        SELECT
+			a.id,
+			a.name,
+			position,
+			b.name AS building,
+			f.name AS floor,
+			width,
+			height,
+			ip,
+			devType,
+			devName,
+			remark,
+			mac,
+			open,
+			ar.ad AS ad,
+			ar.danger AS danger
+		FROM
+			advert a
+			LEFT JOIN building b ON b.id = a.building
+			LEFT JOIN floor f ON f.id = a.floor
+			LEFT JOIN advert_relation ar ON a.id = ar.advert
+		WHERE
+			a.building = #{id}
+    </select>
+
+    <select id="queryAdvertListByFloorId" resultType="com.zoolon.issue.po.one.advert.AdvertPo"
+            parameterType="com.zoolon.issue.vo.param.advert.ByFloorIdParam">
+        SELECT
+			a.id,
+			a.name,
+			position,
+			b.name AS building,
+			f.name AS floor,
+			width,
+			height,
+			ip,
+			devType,
+			devName,
+			remark,
+			mac,
+			open,
+			ar.ad AS ad,
+			ar.danger AS danger,
+			a.open
+		FROM
+			advert a
+			LEFT JOIN building b ON b.id = a.building
+			LEFT JOIN floor f ON f.id = a.floor
+			LEFT JOIN advert_relation ar ON a.id = ar.advert
+		WHERE
+			a.floor = #{id}
+    </select>
+
+    <select id="getAllAdvertList" resultType="com.zoolon.issue.po.one.advert.AdvertPo">
+        SELECT
+			a.id AS id,
+			a.name AS name,
+			position,
+			b.name AS building,
+			f.name AS floor,
+			width,
+			height,
+			ip,
+			devType,
+			devName,
+			remark,
+			mac,
+			open
+		FROM
+			advert a
+			LEFT JOIN building b ON b.id = a.building
+			LEFT JOIN floor f ON f.id = a.floor
+    </select>
+
+    <select id="getAdvertById" resultType="com.zoolon.issue.domain.one.Advert"
+            parameterType="com.zoolon.issue.vo.param.advert.ByIdParam">
+        SELECT
+			a.id AS id,
+			name,
+			position,
+			building,
+			floor,
+			width,
+			height,
+			ip,
+			devType,
+			devName,
+			remark,
+			mac,
+			open,
+			ar.ad AS ad,
+			ar.danger AS danger
+		FROM
+			advert a
+		LEFT JOIN advert_relation ar ON a.id = ar.advert
+			WHERE id = #{id}
+    </select>
+
+    <update id="updateAdvert" parameterType="com.zoolon.issue.vo.param.advert.UpdateParam">
+		update
+			advert
+		SET
+			name=#{name},
+			position=#{position},
+			building=#{building},
+			floor=#{floor},
+			width=#{width},
+			height=#{height},
+			ip=#{ip},
+			devType=#{devType},
+			devName=#{devName},
+			remark=#{remark},
+			mac=#{mac}
+		where
+			id=#{id}
+	</update>
+
+    <update id="updateAdvertOpen" parameterType="com.zoolon.issue.vo.param.advert.OpenParam">
+		update
+			advert
+		SET
+			open=#{open}
+		where
+			id=#{id}
+	</update>
+
+    <delete id="delAdByIds">
+        DELETE FROM
+        advert
+        WHERE
+        id
+        IN
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="queryAdvertDevById" resultType="com.zoolon.issue.po.one.advert.AdvertDevPo">
+        SELECT
+        id,
+        ip,
+        mac
+        FROM
+        advert
+        WHERE
+        id
+        IN
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="queryAdvertDataById" parameterType="com.zoolon.issue.vo.param.advert.ByIdParam"
+            resultType="com.zoolon.issue.po.one.advert.AdvertDataPo">
+        SELECT
+            width,
+            height,
+            ip,
+            remark,
+            mac,
+            open,
+            title1,
+            title2,
+            title3,
+            content1,
+            content2,
+            video1,
+            video2,
+            d.video AS danger
+        FROM
+            advert a
+        LEFT JOIN
+            advert_relation ar ON a.id = ar.advert
+        LEFT JOIN
+            ad ad ON ad.id = ar.ad
+        LEFT JOIN
+            danger d ON d.id = ar.danger
+        WHERE
+            a.id = #{id}
+    </select>
+</mapper>

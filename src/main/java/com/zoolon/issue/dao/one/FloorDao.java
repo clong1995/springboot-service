@@ -1,7 +1,7 @@
 package com.zoolon.issue.dao.one;
 
-import com.zoolon.issue.po.one.BuildingFloorPo;
-import com.zoolon.issue.po.one.FloorPo;
+import com.zoolon.issue.po.one.building.BuildingFloorPo;
+import com.zoolon.issue.po.one.floor.FloorPo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

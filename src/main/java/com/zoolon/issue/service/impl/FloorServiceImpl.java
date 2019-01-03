@@ -2,9 +2,9 @@ package com.zoolon.issue.service.impl;
 
 
 import com.zoolon.issue.dao.one.FloorDao;
-import com.zoolon.issue.po.one.BuildingFloorPo;
+import com.zoolon.issue.po.one.building.BuildingFloorPo;
 import com.zoolon.issue.vo.res.floor.BuildingFloorStoreVo;
-import com.zoolon.issue.po.one.FloorPo;
+import com.zoolon.issue.po.one.floor.FloorPo;
 import com.zoolon.issue.service.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

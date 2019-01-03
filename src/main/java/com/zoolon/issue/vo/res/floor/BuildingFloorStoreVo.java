@@ -1,6 +1,6 @@
 package com.zoolon.issue.vo.res.floor;
 
-import com.zoolon.issue.po.one.FloorPo;
+import com.zoolon.issue.po.one.floor.FloorPo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

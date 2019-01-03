@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zoolon.issue.dao.one.AuthDao">
-    <select id="findByUsername" resultType="com.zoolon.issue.domain.auth.UserDetail">
+    <select id="findByUsername" resultType="com.zoolon.issue.domain.one.auth.UserDetail">
         SELECT id, username, password from user where username = #{username};
     </select>
 
-    <insert id="insert" parameterType="com.zoolon.issue.domain.auth.UserDetail"
+    <insert id="insert" parameterType="com.zoolon.issue.domain.one.auth.UserDetail"
             useGeneratedKeys="true"
             keyColumn="id"
             keyProperty="id">
@@ -18,15 +18,15 @@
         insert into user_role (user, role) VALUES (#{user}, #{role});
     </insert>
 
-    <select id="findRoleById" resultType="com.zoolon.issue.domain.auth.Role">
+    <select id="findRoleById" resultType="com.zoolon.issue.domain.one.auth.Role">
       select id, name, nameZh from role where id = #{id}
     </select>
 
-    <select id="findRoleByUserId" resultType="com.zoolon.issue.domain.auth.Role">
+    <select id="findRoleByUserId" resultType="com.zoolon.issue.domain.one.auth.Role">
         select * from role where id in (SELECT role from user_role where user = #{id})
     </select>
 
-    <select id="findRolePermission" resultType="com.zoolon.issue.po.one.RolePermissionPo">
+    <select id="findRolePermission" resultType="com.zoolon.issue.po.one.role.RolePermissionPo">
         SELECT
 			r.name as role,
 			p.url as url

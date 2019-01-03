@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoolon.issue.dao.one.AdDao">
+    <select id="queryAdById" resultType="com.zoolon.issue.domain.one.Ad"
+            parameterType="com.zoolon.issue.vo.param.ad.ByIdParam">
+        SELECT
+            id,
+			name,
+			title1,
+			title2,
+			title3,
+			content1,
+			content2,
+			video1,
+			video2
+		FROM
+			ad
+		WHERE
+			id = #{id}
+    </select>
+
+
+    <select id="queryAdAll" resultType="com.zoolon.issue.po.one.ad.AdAllPo">
+        SELECT id, name FROM ad
+    </select>
+
+
+    <insert id="insertAd" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="com.zoolon.issue.vo.param.ad.AddParam">
+		INSERT INTO
+		ad
+		(name,title1,title2,title3,content1,content2,video1,video2)
+		VALUES
+		(#{name},#{title1},#{title2},#{title3},#{content1},#{content2},#{video1},#{video2})
+	</insert>
+
+    <update id="updateAdById" parameterType="com.zoolon.issue.vo.param.ad.UpdateParam">
+        update
+          ad
+        SET
+            name=#{name},
+			title1=#{title1},
+			title2=#{title2},
+			title3=#{title3},
+			content1=#{content1},
+			content2=#{content2},
+			video1=#{video1},
+			video2=#{video2}
+        where
+          id=#{id}
+    </update>
+
+    <delete id="delAdByIds">
+        DELETE FROM
+        ad
+        WHERE
+        id
+        IN
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

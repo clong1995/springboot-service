@@ -136,6 +136,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         "/auth/login",
                         "/auth/sign",
+                        //"/auth/user",
                         "/test/**"
                 );
     }

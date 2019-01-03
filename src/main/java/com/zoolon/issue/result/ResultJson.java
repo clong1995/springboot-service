@@ -1,6 +1,7 @@
 package com.zoolon.issue.result;
 
 import lombok.Data;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Date;

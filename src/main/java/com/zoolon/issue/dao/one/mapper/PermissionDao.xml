@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zoolon.issue.dao.one.PermissionDao">
-    <select id="findAll" resultType="com.zoolon.issue.domain.auth.Permission">
+    <select id="findAll" resultType="com.zoolon.issue.domain.one.auth.Permission">
         SELECT * from permission
     </select>
 
-    <select id="findByAdminUserId" parameterType="int" resultType="com.zoolon.issue.domain.auth.Permission">
+    <select id="findByAdminUserId" parameterType="int" resultType="com.zoolon.issue.domain.one.auth.Permission">
         SELECT
 			p.*
 		FROM

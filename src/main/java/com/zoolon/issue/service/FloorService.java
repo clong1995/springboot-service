@@ -1,7 +1,7 @@
 package com.zoolon.issue.service;
 
 import com.zoolon.issue.vo.res.floor.BuildingFloorStoreVo;
-import com.zoolon.issue.po.one.FloorPo;
+import com.zoolon.issue.po.one.floor.FloorPo;
 
 import java.util.List;
 

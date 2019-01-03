@@ -1,4 +1,4 @@
-package com.zoolon.issue.po.one;
+package com.zoolon.issue.po.one.role;
 
 import lombok.Getter;
 import lombok.Setter;

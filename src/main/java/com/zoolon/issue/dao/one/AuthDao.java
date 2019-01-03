@@ -1,8 +1,8 @@
 package com.zoolon.issue.dao.one;
 
-import com.zoolon.issue.domain.auth.Role;
-import com.zoolon.issue.domain.auth.UserDetail;
-import com.zoolon.issue.po.one.RolePermissionPo;
+import com.zoolon.issue.domain.one.auth.Role;
+import com.zoolon.issue.domain.one.auth.UserDetail;
+import com.zoolon.issue.po.one.role.RolePermissionPo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -48,7 +48,7 @@ public interface AuthDao {
      * @param id
      * @return
      */
-    Role findRoleByUserId(@Param("id") Integer id);
+    List<Role> findRoleByUserId(@Param("id") Integer id);
 
     List<RolePermissionPo> findRolePermission();
 
